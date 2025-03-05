@@ -1,8 +1,13 @@
 import { Module } from '@nestjs/common';
-
-console.log(process.env.POSTGRES_PASSWORD, 31123);
+import { ConfigModule } from '@nestjs/config';
+import { IS_DEV_ENV } from './libs/common/utils/is-dev.utils';
 
 @Module({
-  imports: [],
+  imports: [
+    ConfigModule.forRoot({
+      ignoreEnvFile: !IS_DEV_ENV,
+      isGlobal: true,
+    }),
+  ],
 })
 export class AppModule {}

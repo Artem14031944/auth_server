@@ -1,33 +1,27 @@
-version: '3.7'
-
 services:
 
   db:
-    someservice:
-      env_file: .env
+    image: postgres:latest
     container_name: postgres
-    image: postgres:15.2
     restart: always
     environment:
-      - POSTGRES_USER=${POSTGRES_USER}
-      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
-      - POSTGRES_DB=${POSTGRES_DB}
+      POSTGRES_USER: mark
+      POSTGRES_PASSWORD: 123456
+      POSTGRES_DB: full-auth
     ports:
-      - 5433:5432
+      - 5432:5432
     volumes:
-      - postgres_data:/var/lib/postgresql/data
+     - ./data:/var/lib/postgresql/data
     networks:
       - backend
 
   redis:
-    someservice:
-      env_file: .env
     container_name: redis
     image: redis:5.0
     restart: always
     ports:
       - 6379:6379
-    command: redis-server --requirepass ${REDIS_PASSPORT}
+    command: redis-server --requirepass redis
     volumes:
       - redis_data:/data
     networks:
