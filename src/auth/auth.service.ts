@@ -1,8 +1,7 @@
 import { ConflictException, Injectable } from '@nestjs/common';
 import { RegisterDto } from './dto/register.dto';
 import { UserService } from '@/user/user.service';
-import { AuthMethod } from '@prisma/__generate__';
-
+import { AuthMethod, User } from '@prisma/__generate__';
 @Injectable()
 export class AuthService {
   public constructor(private readonly userService: UserService) {}
@@ -26,12 +25,14 @@ export class AuthService {
       isVerified: false,
     });
 
-    return newUser;
+    return this.saveSession(newUser);
   }
 
   public async login() {}
 
   public async logout() {}
 
-  private async saveSession() {}
+  private async saveSession(user: User) {
+    console.log('Saved session, user: ', user);
+  }
 }

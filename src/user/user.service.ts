@@ -36,12 +36,6 @@ export class UserService {
       },
     });
 
-    if (!user) {
-      throw new NotFoundException(
-        'Пользователь не найден. Пожалуйста, проверьте введенные данные.',
-      );
-    }
-
     return user;
   }
 

@@ -6,8 +6,8 @@ import { parseBoolean } from './libs/common/utils/parse-boolean.utils';
 import { ms, StringValue } from './libs/common/utils/ms.utils';
 import { RedisStore } from 'connect-redis';
 import IORedis from 'ioredis';
-import * as cookieParser from 'cookie-parser';
 import * as session from 'express-session';
+import * as cookieParser from 'cookie-parser';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
