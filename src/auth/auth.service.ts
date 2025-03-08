@@ -63,7 +63,7 @@ export class AuthService {
 
   public async logout(req: Request, res: Response): Promise<void> {
     return new Promise((resolve, reject) => {
-      req.destroy(err => {
+      req.session.destroy((err: Error) => {
         if (err) {
           return reject(
             new InternalServerErrorException(
